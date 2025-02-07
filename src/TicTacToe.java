@@ -41,12 +41,16 @@ public class TicTacToe
      *
      * The view is initialized with this TicTacToe object
      */
+    private TicTacToeView window;
+
     public TicTacToe() {
+        // Initializes the front end
+        window = new TicTacToeView(this);
         // Initialize Squares in the board
         this.board = new Square[3][3];
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
-                this.board[row][col] = new Square(row, col);
+                this.board[row][col] = new Square(row, col,window);
             }
         }
 
@@ -56,6 +60,7 @@ public class TicTacToe
         this.winner = BLANK;
         this.winIndex = -1;
         this.winDirection = -1;
+        window.repaint();
     }
 
     /******************** Methods You May Find Helpful ********************/
@@ -116,6 +121,7 @@ public class TicTacToe
             int col = input.nextInt();
             if(this.pickLocation(row, col)) {
                 this.takeTurn(row, col);
+                window.repaint();
             } else {
                 System.out.println("That space is taken, or you entered an invalid row/col");
             }
@@ -132,9 +138,11 @@ public class TicTacToe
             if (this.turn%2 == 0) {
                 this.winner = O_MARKER;
                 System.out.println("O Wins!");
+                window.repaint();
             } else {
                 this.winner = X_MARKER;
                 System.out.println("X Wins!");
+                window.repaint();
             }
         }
     }
@@ -164,7 +172,7 @@ public class TicTacToe
      * @return True if the location is available, False otherwise
      */
     private boolean pickLocation(int row, int col) {
-        if(row < 3 && col < 3) {
+        if (row < 3 && col < 3) {
             return this.board[row][col].isEmpty();
         }
         return false;
