@@ -9,6 +9,9 @@ public class DiceGameView extends JFrame{
     private DiceGame game;
     public DiceGameView(DiceGame game, int numSides) {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setTitle("Dice Game");
+        this.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+        this.setVisible(true);
     }
 
 }
