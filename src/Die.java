@@ -1,18 +1,17 @@
+import java.awt.*;
+
 public class Die {
-    private int numSides;
-    public Die (int numSides) {
-        this.numSides = numSides;
-    }
-
-    public int getNumSides() {
-        return numSides;
-    }
-
-    public void setNumSides(int numSides) {
-        this.numSides = numSides;
+    private int side;
+    private DiceGameView window;
+    public Die (DiceGameView window) {
+        this.window = window;
     }
 
     public int roll() {
-        return (int) (Math.random() * numSides) + 1;
+        return (int) (Math.random() * 6) + 1;
+    }
+
+    public void draw(Graphics g) {
+
     }
 }

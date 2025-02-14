@@ -8,14 +8,23 @@ public class DiceGame {
     private int guess;
     private int counter;
     private int[] diceRolls;
-
+    private DiceGameView window;
+    private final int START = 0;
+    private final int INSTRUCTIONS = 1;
+    private final int WAGER = 2;
+    private final int ROLL = 3;
+    private final int LOSS = 4;
+    private final int END = 5;
+    private int state;
 
 
     public DiceGame()
     {
-        this.d1 = new Die(6);
+        this.d1 = new Die(window);
         this.input = new Scanner(System.in);
         this.diceRolls = new int[3];
+        window = new DiceGameView(this);
+        state = START;
     }
     public void makePlayer()
     {
@@ -77,7 +86,7 @@ public class DiceGame {
     public void playGame()
     {
         counter = 0;
-        // Gets the wager and guess and makes sure they is valid
+        // Gets the wager and guess and makes sure they are valid
 
         // Creates an array and fills it with the rolls
         System.out.println("The rolls are: ");
@@ -103,13 +112,17 @@ public class DiceGame {
         System.out.println("\n" + playerOne.getName() + ", your balance is " + playerOne.getBalance() );
     }
 
+    public int getState() {
+        return state;
+    }
+
     public static void main(String[] args)
     {
         DiceGame game = new DiceGame();
 
         game.makePlayer();
 
-        while (game.outOfMoney() == false)
+        while (!game.outOfMoney())
         {
             game.wagerAmount();
             game.getGuess();
