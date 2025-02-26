@@ -1,14 +1,13 @@
 public class Player
 {
+    // Instance variables for name and money
     private double balance;
     private String name;
-    private double startMoney;
 
     public Player(String name, double startMoney)
     {
         this.balance = startMoney;
         this.name = name;
-        this.startMoney = startMoney;
     }
 
     public double getBalance()
@@ -18,6 +17,7 @@ public class Player
 
     public void addMoney(double money)
     {
+        // Adds money instead of setting it
         this.balance += money;
     }
 
